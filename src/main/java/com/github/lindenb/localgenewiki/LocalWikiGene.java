@@ -9,7 +9,7 @@
  * WWW:
  * 		http://plindenbaum.blogspot.com
  */
-package org.lindenb.localgenemw;
+package com.github.lindenb.localgenewiki;
 
 import java.io.BufferedReader;
 import java.io.Console;

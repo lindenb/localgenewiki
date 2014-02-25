@@ -50,6 +50,12 @@ Motivation:
 <xsl:value-of select="$locus"/>
 <xsl:text>]</xsl:text>
 </dd>
+<dt><xsl:text>Map view</xsl:text></dt>
+<dd>
+<xsl:text>[</xsl:text>
+<xsl:value-of select="concat('http://www.ncbi.nlm.nih.gov/mapview/map_search.cgi?direct=on&amp;idtype=gene&amp;id=',$geneId)"/>
+<xsl:text> Map view]</xsl:text>
+</dd>
 <xsl:apply-templates select="Entrezgene_gene"/>
 <xsl:apply-templates select="Entrezgene_source"/>
 </dl>
@@ -141,12 +147,23 @@ An article about '''<xsl:value-of select="$locus"/>''' should be located at :[[<
 <xsl:template match="Dbtag[Dbtag_db='MIM']">
 <xsl:for-each select="Dbtag_tag/Object-id/Object-id_id">
 <xsl:text> [</xsl:text>
-<xsl:value-of select="concat('http://www.ncbi.nlm.nih.gov/entrez/dispomim.cgi?id=',.)"/>
+<xsl:value-of select="concat('http://omim.org/entry/',.)"/>
 <xsl:text> </xsl:text>
 <xsl:value-of select="concat('MIM:',.)"/>
 <xsl:text>]</xsl:text>
 </xsl:for-each>
 </xsl:template>
+
+<xsl:template match="Dbtag[Dbtag_db='Vega']">
+<xsl:for-each select="Dbtag_tag/Object-id/Object-id_str">
+<xsl:text> [</xsl:text>
+<xsl:value-of select="concat('http://vega.sanger.ac.uk/Homo_sapiens/Gene/Summary?g=',.,'&amp;db=core')"/>
+<xsl:text> </xsl:text>
+<xsl:value-of select="concat('Vega:',.)"/>
+<xsl:text>]</xsl:text>
+</xsl:for-each>
+</xsl:template>
+
 
 <xsl:template match="Dbtag">
 <xsl:variable name="dbtag_db" select="Dbtag_db"/>

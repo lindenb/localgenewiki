@@ -12,4 +12,4 @@ tests: genes.xml
 		
 		
 genes.xml:
-	curl -o $@ "http://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=gene&id=111,112,113,114,115&rettype=xml"
+	curl -o $@ "http://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=gene&id=110,111,112,113,114,115,116&rettype=xml"

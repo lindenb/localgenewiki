@@ -582,37 +582,37 @@ public class LocalGeneWiki
 		        String pageContent=null;
 		        
 		        
-		        
-		        
-		        
-	        	if(list.isEmpty()) continue;
-	        	if(list.size()==1)
-	        		{
-	        		LOG.info(article+" is a redirect");
-	        		pageContent="#REDIRECT [["+ list.iterator().next().locus+"]]\n";
-	        		}
-	        	else
-	        		{
-	        		LOG.info(article+" is a disambiguation");
-	        		StringBuilder sw=new StringBuilder();
-	        		sw.append("'''").append(article).append("''' may refer to:\n");
-	        		for(Locus L:list)
-	        			{
-	        			sw.append("* [[").append(L.locus).append("]] ");
-	        			sw.append(L.description);
-	        			sw.append("\n");
-	        			}
-	        		sw.append("\n{{disambiguation}}\n");
-	        		pageContent=sw.toString();
-	        		}
-	        	
-	        	 this.postNewArticle(
-	             		localizedArticle(article),
-	             		"bot creating article for Alias "+article,
-	             		page.edittoken,
-	             		page.starttimestamp,
-	             		pageContent
-	             		);
+		        if(page.missing)
+			        {
+		        	if(list.isEmpty()) continue;
+		        	if(list.size()==1)
+		        		{
+		        		LOG.info(article+" is a redirect");
+		        		pageContent="#REDIRECT [["+ list.iterator().next().locus+"]]\n";
+		        		}
+		        	else
+		        		{
+		        		LOG.info(article+" is a disambiguation");
+		        		StringBuilder sw=new StringBuilder();
+		        		sw.append("'''").append(article).append("''' may refer to:\n");
+		        		for(Locus L:list)
+		        			{
+		        			sw.append("* [[").append(L.locus).append("]] ");
+		        			sw.append(L.description);
+		        			sw.append("\n");
+		        			}
+		        		sw.append("\n{{disambiguation}}\n");
+		        		pageContent=sw.toString();
+		        		}
+		        	
+		        	 this.postNewArticle(
+		             		localizedArticle(article),
+		             		"bot creating article for Alias "+article,
+		             		page.edittoken,
+		             		page.starttimestamp,
+		             		pageContent
+		             		);
+			        }
 	        	}
 	        cursor.close();
 	        }
